@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic The Hedgehog</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<main class='intro' style="width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: black;">
+    <div style="font-size: 5rem; color: blue;">
+        SEGA
+        <img src="./sprite/Sonic/base_sonic.png" alt="">
+    </div>
+</main>
+<script>
+const intro = document.querySelector('.intro')
+console.log(intro)
+
+function introTimeout() {
+  timeout = setTimeout(introEnding, 3000);
+  console.log(timeout)
+}
+
+
+function introEnding(){
+    intro.style.display = 'none';
+}
+
+
+</script>
+</body>
+</html>

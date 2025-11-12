@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sonic Animation Controller</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      gap: 20px;
+    }
+    img {
+      transform: scale(1.5);
+      height: auto;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: royalblue;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: deepskyblue;
+    }
+  </style>
+</head>
+<body>
+  <img id="Sonic" src="sprite/Sonic/idle_sonic_2.png" alt="Sonic" />
+
+  <div class="controls">
+    <button onclick="setAnimation('idle')">Idle</button>
+    <button onclick="setAnimation('boost')">Boost</button>
+    <button onclick="setAnimation('homing')">Homing</button>
+    <button onclick="setAnimation('gameOver')">Game Over</button>
+  </div>
+
+  <script>
+    const sonic = document.getElementById('Sonic');
+
+    // 🎞️ Tes différentes animations
+    const animations = {
+      idle: [
+        'sprite/Sonic/idle_sonic_2.png',
+        'sprite/Sonic/idle_sonic_3.png',
+        'sprite/Sonic/idle_sonic_4.png',
+        'sprite/Sonic/idle_sonic_5.png'
+      ],
+      gameOver: [
+        'sprite/Sonic/gameover_sonic.png',
+        'sprite/Sonic/gameover_sonic_2.png',
+        'sprite/Sonic/gameover_sonic_3.png',
+        'sprite/Sonic/gameover_sonic_4.png'
+      ],
+      boost: [
+        'sprite/Sonic/boost_sonic.png',
+        'sprite/Sonic/boost_sonic_2.png',
+        'sprite/Sonic/boost_sonic_3.png',
+        'sprite/Sonic/boost_sonic_4.png'
+      ],
+      homing: [
+        'sprite/Sonic/homing_sonic.png',
+        'sprite/Sonic/homing_sonic_2.png',
+        'sprite/Sonic/homing_sonic_3.png',
+      ]
+    };
+
+    // ⚙️ État de l’animation
+    let frameIndex = 0;
+    let currentAnimation = animations.idle;
+    let intervalId;
+
+    function animateSonic() {
+      sonic.src = currentAnimation[frameIndex];
+      frameIndex = (frameIndex + 1) % currentAnimation.length;
+    }
+
+    function startAnimation() {
+      clearInterval(intervalId);
+      frameIndex = 0;
+      intervalId = setInterval(animateSonic, 50);
+    }
+
+    function setAnimation(name) {
+      if (animations[name]) {
+        currentAnimation = animations[name];
+        startAnimation();
+      }
+    }
+
+    // 🔄 Animation idle par défaut
+    startAnimation();
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+@font-face {
+  font-family: SEGA; /* set name */
+  src: url(../SEGA.TTF); /* url of the font */
+}
+
+
+body{
+    font-family: SEGA;
+    margin: 0;
+}
