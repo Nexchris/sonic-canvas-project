@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading</title>
+</head>
+<body>
+  <!-- il manquait ça -->
+  <canvas id="canvasGame" width="640" height="360"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvasGame');
+    const ctx = canvas.getContext('2d');
+
+    const backgroundImage = new Image();
+    backgroundImage.src = "./assets/loadingScreen.gif";
+
+    backgroundImage.onload = () => {
+      // on dessine le gif dans le canvas
+      ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    };
+  </script>
+</body>
+</html>
