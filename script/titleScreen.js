@@ -8,6 +8,9 @@ const title = {
   height: 209
 };
 
+ctx.font = "20px SEGA";
+ctx.fillStyle = "white";
+
 const backgroundImage = new Image();
 const SonicTitle = new Image();
 
@@ -27,9 +30,18 @@ SonicTitle.onload = () => {
   if (backgroundLoaded) titleScreen();
 };
 
+setTimeout(() => {
+  ctx.fillText("PRESS SPACE BUTTON",225,340);
+  document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    console.log("Space key pressed - Start the game!");
+  }
+});
+}, 10000);
+
+
 function titleScreen() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
   ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
   ctx.drawImage(SonicTitle, 220, 260, title.width / 4, title.height / 4);
 }

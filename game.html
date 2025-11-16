@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic The Hedgehog</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <main>
+        <section class="gameSection">
+            <img src="./assets/SonicTitle.png" alt="">
+            <h1 class="projectTitle">Canvas Project.</h1>
+
+            <!-- Donne un id à l'audio -->
+            <audio id="titleMusic" src="./music/titleSong.mp3"></audio>
+
+            <div class="gameZone">
+                <!-- vidéo = couche du dessus au début -->
+                <video 
+                    id="introVideo" 
+                    class="canvasLayer" 
+                    src="./video/splashScreen.mp4">
+                </video>
+
+                <!-- canvas = en dessous, caché au début -->
+                <canvas id="canvasGame" width="640" height="360"></canvas>
+
+                <!-- bouton play au centre -->
+                <button id="playIntro" class="playButton">
+                    ▶
+                </button>
+            </div>
+        </section>
+
+        <section>
+            ss
+        </section>
+    </main>
+
+    <script src="./script/titleScreen.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+  const video  = document.getElementById("introVideo");
+  const canvas = document.getElementById("canvasGame");
+  const playBtn = document.getElementById("playIntro");
+  const audio = document.getElementById("titleMusic");
+
+  // Au cas où : on s'assure que le canvas est caché au début
+  canvas.style.display = "none";
+  video.style.display = "block";
+
+  // Clic sur le bouton play
+  playBtn.addEventListener("click", async () => {
+    // on cache le bouton
+    playBtn.style.display = "none";
+
+    // on reset la vidéo si besoin
+    video.currentTime = 0;
+
+    try {
+      await video.play(); // lance l'intro
+    } catch (err) {
+      console.error("Erreur lecture vidéo :", err);
+    }
+  });
+
+  // Quand la vidéo se termine
+  video.addEventListener("ended", async () => {
+    // cacher la vidéo
+    video.style.display = "none";
+
+    // afficher le canvas
+    canvas.style.display = "block";
+
+    // lancer l'audio du titre
+    try {
+      await audio.play();
+    } catch (err) {
+      console.error("Erreur lecture audio :", err);
+    }
+
+    // 👉 C’est aussi ici que tu peux lancer ton jeu canvas :
+    // startGame(canvas);
+  });
+});
+
+    </script>
+</body>
+</html>

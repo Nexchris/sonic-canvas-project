@@ -1,10 +1,74 @@
-@font-face {
-  font-family: SEGA; /* set name */
-  src: url(../SEGA.TTF); /* url of the font */
+body {
+  margin: 0;
 }
 
+main {
+  display: flex;
+  height: 100vh;
+  background-color: #E8F4FF; /* par ex. */
+  color: black;
+}
 
-body{
-    font-family: SEGA;
-    margin: 0;
+.projectTitle {
+  text-shadow: 2px 2px 4px #003ab8;
+  color: white;
+  font-weight: bold;
+  font-family: Cooper, sans-serif;
+}
+
+.gameSection {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Zone de jeu = conteneur positionné */
+.gameZone {
+  position: relative;
+  width: 640px;
+  height: 360px;
+  overflow: hidden;
+}
+
+/* Vidéo + canvas superposés */
+#introVideo,
+#canvasGame {
+  position: absolute;
+  inset: 0;           /* top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Canvas caché au début (on le montrera en JS) */
+#canvasGame {
+  display: none;
+}
+
+/* Bouton play au centre de la gameZone */
+.playButton {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  font-size: 2.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.playButton:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  opacity: 0.9;
 }
